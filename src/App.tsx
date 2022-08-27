@@ -6,16 +6,23 @@ import {Translator} from './pages/Translator';
 import {Favourite} from './pages/Favourite';
 import {BrowserRouter} from 'react-router-dom';
 import {NotFoundPage} from './pages/NotFoundPage';
+import {Header} from './components/Header';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={routes.root} element={<Translator/>}/>
-        <Route path={routes.favourite} element={<Favourite/>}/>
-        <Route path="*" element={<NotFoundPage/>}/>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Header />
+
+        <Routes>
+          <Route path={routes.root} element={<Translator/>}/>
+          <Route path={routes.favourite} element={<Favourite/>}/>
+          <Route path="*" element={<NotFoundPage/>}/>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
