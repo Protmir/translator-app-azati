@@ -1,0 +1,81 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "indent": ["error", 4, {"SwitchCase": 1}],
+    "react/jsx-indent": ["error", 4],
+    "react/jsx-indent-props": ["error", 4],
+    "react/destructuring-assignment": ["error", "always"],
+    "quotes": ["error", "single"],
+    "arrow-parens": ["error", "as-needed"],
+    "no-console": "off",
+    "no-shadow": "off",
+    "no-alert": "off",
+    "no-param-reassign": 0,
+    "@typescript-eslint/no-shadow": ["error"],
+    "react/jsx-one-expression-per-line": "off",
+    "react/require-default-props": "off",
+    "consistent-return": "off",
+    "default-param-last": 0,
+    "prefer-const": "off",
+    "max-len": ["error", {
+      "code": 200,
+      "ignoreComments": true,
+      "ignoreUrls": true,
+      "ignoreTemplateLiterals": true
+    }],
+    "import/extensions": [
+      "error",
+      "never"
+    ],
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": [
+      2,
+      { "caseSensitive": false }
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".mjs", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react-hooks/exhaustive-deps": "off"
+      }
+    }
+  ]
+}
