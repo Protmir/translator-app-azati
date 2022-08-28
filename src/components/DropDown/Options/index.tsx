@@ -1,16 +1,16 @@
 import React, {
-  ComponentType,
-  PropsWithChildren,
-  ReactNode,
-  useCallback,
+    ComponentType,
+    PropsWithChildren,
+    ReactNode,
+    useCallback,
 } from 'react';
 import styled from 'styled-components';
-import {applySizeOptions} from './applySizeOptions';
-import {DropDownProps} from '../index';
-import {colors} from '../../../constants/colors';
-import {units} from '../../../helpers/styles/units';
-import {typography} from '../../../helpers/styles/typography';
-import {applyPositionDropDown} from './applyPositionDropDown';
+import { applySizeOptions } from './applySizeOptions';
+import { DropDownProps } from '../index';
+import { colors } from '../../../constants/colors';
+import { units } from '../../../helpers/styles/units';
+import { typography } from '../../../helpers/styles/typography';
+import { applyPositionDropDown } from './applyPositionDropDown';
 
 export interface OptionProps {
   nameOption?: string;
@@ -35,7 +35,7 @@ const StyledDropDown = styled.div<Pick<DropDownProps, 'height' | 'position' | 'i
   margin-top: 0;
   z-index: 100;
 
-  overflow: ${({ isOverflowHidden }) => isOverflowHidden ? 'hidden' : 'visible'};
+  overflow: ${({ isOverflowHidden }) => (isOverflowHidden ? 'hidden' : 'visible')};
 
   background-color: ${colors.white};
   backdrop-filter: blur(48px);
@@ -72,72 +72,70 @@ const StyledPrefix = styled.div`
 `;
 
 const Option = ({
-  nameOption,
-  prefix,
-  onClick,
-  onCloseClick,
+    nameOption,
+    prefix,
+    onClick,
+    onCloseClick,
 }: PropsWithChildren<OptionProps>) => {
-  const handleClick = useCallback(() => {
-    if (onClick) {
-      onClick();
-    }
+    const handleClick = useCallback(() => {
+        if (onClick) {
+            onClick();
+        }
 
-    if (onCloseClick) {
-      onCloseClick();
-    }
-  }, [onClick, onCloseClick]);
+        if (onCloseClick) {
+            onCloseClick();
+        }
+    }, [onClick, onCloseClick]);
 
-  return (
-    <StyledOption onClick={handleClick}>
-      {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
-      <span>{nameOption}</span>
-    </StyledOption>
-  );
+    return (
+        <StyledOption onClick={handleClick}>
+            {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
+            <span>{nameOption}</span>
+        </StyledOption>
+    );
 };
 
 export const Options = ({
-  options,
-  height,
-  position,
-  onCloseClick,
-  isOverflowHidden = true,
-  size,
-  className,
-}: PropsWithChildren<OptionsProps>) => {
-  return (
+    options,
+    height,
+    position,
+    onCloseClick,
+    isOverflowHidden = true,
+    size,
+    className,
+}: PropsWithChildren<OptionsProps>) => (
     <StyledDropDown
-      height={height}
-      position={position}
-      isOverflowHidden={isOverflowHidden}
-      size={size}
-      className={className}
+        height={height}
+        position={position}
+        isOverflowHidden={isOverflowHidden}
+        size={size}
+        className={className}
     >
-      {options?.map(({
-        nameOption,
-        prefix,
-        Component,
-        onClick,
-        key,
-        componentProps,
-        ...props
-      }: OptionProps) => (
-        Component ? (
-          <Component
-            key={key}
-            onCloseClick={onCloseClick}
-            {...componentProps}
-            {...props}
-          />
-        ) : (
-          <Option
-            onClick={onClick}
-            key={nameOption}
-            nameOption={nameOption}
-            prefix={prefix}
-            onCloseClick={onCloseClick}
-          />
-        )
-      ))}
+        {options?.map(({
+            nameOption,
+            prefix,
+            Component,
+            onClick,
+            key,
+            componentProps,
+            ...props
+        }: OptionProps) => (
+            Component ? (
+                <Component
+                    key={key}
+                    onCloseClick={onCloseClick}
+                    {...componentProps}
+                    {...props}
+                />
+            ) : (
+                <Option
+                    onClick={onClick}
+                    key={nameOption}
+                    nameOption={nameOption}
+                    prefix={prefix}
+                    onCloseClick={onCloseClick}
+                />
+            )
+        ))}
     </StyledDropDown>
-  );
-};
+);

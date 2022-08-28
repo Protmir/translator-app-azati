@@ -1,9 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
-import {units} from '../../helpers/styles/units';
-import {typography} from '../../helpers/styles/typography';
-import {colors} from '../../constants/colors';
-
+import { units } from '../../helpers/styles/units';
+import { typography } from '../../helpers/styles/typography';
+import { colors } from '../../constants/colors';
 
 interface TextAreaProps {
   name?: string;
@@ -32,7 +31,7 @@ const StyledTextArea = styled.textarea<Pick<TextAreaProps, 'resize' | 'error' | 
   padding: ${units(5)};
   box-sizing: border-box;
 
-  border: 1px solid ${({ error }) => error ? colors.redDark : colors.greyMedium1};
+  border: 1px solid ${({ error }) => (error ? colors.redDark : colors.greyMedium1)};
   border-radius: 8px;
 
   ${({ resize }) => !resize && 'resize: none'};
@@ -40,7 +39,7 @@ const StyledTextArea = styled.textarea<Pick<TextAreaProps, 'resize' | 'error' | 
 
   font-family: inherit;
   font-style: normal;
-  color: ${({ error }) => error ? colors.redDark : colors.black};
+  color: ${({ error }) => (error ? colors.redDark : colors.black)};
   font-weight: 500;
 
   ${({ readOnly, error }) => !readOnly && (css`
@@ -54,7 +53,7 @@ const StyledTextArea = styled.textarea<Pick<TextAreaProps, 'resize' | 'error' | 
   `)};
   
   &::placeholder {
-    color: ${({ error }) => error ? colors.redDark : colors.greyDark1};
+    color: ${({ error }) => (error ? colors.redDark : colors.greyDark1)};
   }
 
   ${typography(5)};
@@ -76,31 +75,31 @@ const StyledCountValue = styled.p`
 `;
 
 export const TextArea = ({
-  name,
-  onChange,
-  value,
-  placeholder,
-  disabled,
-  readOnly,
-  error,
-  className,
-  resize,
-  maxLength = 200,
+    name,
+    onChange,
+    value,
+    placeholder,
+    disabled,
+    readOnly,
+    error,
+    className,
+    resize,
+    maxLength = 200,
 }: TextAreaProps) => (
-  <StyledRoot className={className}>
-    <StyledTextArea
-      name={name}
-      onChange={onChange}
-      value={value}
-      disabled={disabled}
-      placeholder={placeholder}
-      readOnly={readOnly}
-      maxLength={maxLength}
-      resize={resize}
-      error={error}
-      wrap='hard'
-      autoFocus
-    />
-    {!error && !readOnly && <StyledCountValue>{`${value?.length}/${maxLength}`}</StyledCountValue>}
-  </StyledRoot>
+    <StyledRoot className={className}>
+        <StyledTextArea
+            name={name}
+            onChange={onChange}
+            value={value}
+            disabled={disabled}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            maxLength={maxLength}
+            resize={resize}
+            error={error}
+            wrap="hard"
+            autoFocus
+        />
+        {!error && !readOnly && <StyledCountValue>{`${value?.length}/${maxLength}`}</StyledCountValue>}
+    </StyledRoot>
 );

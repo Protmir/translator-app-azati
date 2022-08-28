@@ -20,40 +20,38 @@ interface IconProps {
 }
 
 export const Icon = ({
-  type,
-  xmlns = 'http://www.w3.org/2000/svg',
-  xmlnsXlink = 'http://www.w3.org/1999/xlink',
-  viewBox = '0 0 24 24',
-  width = '24px',
-  height = '24px',
-  fill = 'none',
-  color = 'white',
-  onClick,
-  onMouseDown,
-  opacity,
-  strokeOpacity,
-  fillOpacity,
-  className,
-  onMouseOver,
-}: PropsWithChildren<IconProps>) => {
-  return (
+    type,
+    xmlns = 'http://www.w3.org/2000/svg',
+    xmlnsXlink = 'http://www.w3.org/1999/xlink',
+    viewBox = '0 0 24 24',
+    width = '24px',
+    height = '24px',
+    fill = 'none',
+    color = 'white',
+    onClick,
+    onMouseDown,
+    opacity,
+    strokeOpacity,
+    fillOpacity,
+    className,
+    onMouseOver,
+}: PropsWithChildren<IconProps>) => (
     <svg
-      onClick={onClick}
-      xmlns={xmlns}
-      xmlnsXlink={xmlnsXlink}
-      viewBox={viewBox}
-      width={width}
-      height={height}
-      fill={fill}
-      stroke={color}
-      className={className}
-      onMouseDown={onMouseDown}
-      opacity={opacity}
-      strokeOpacity={strokeOpacity}
-      fillOpacity={fillOpacity}
-      onMouseOver={onMouseOver}
+        onClick={onClick}
+        xmlns={xmlns}
+        xmlnsXlink={xmlnsXlink}
+        viewBox={viewBox}
+        width={width}
+        height={height}
+        fill={fill}
+        stroke={color}
+        className={className}
+        onMouseDown={onMouseDown}
+        opacity={opacity}
+        strokeOpacity={strokeOpacity}
+        fillOpacity={fillOpacity}
+        onMouseOver={onMouseOver}
     >
-      <use xlinkHref={`${sprite}#${type}`} />
+        <use xlinkHref={`${sprite}#${type}`} />
     </svg>
-  );
-};
+);

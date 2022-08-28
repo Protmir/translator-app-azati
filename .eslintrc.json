@@ -61,7 +61,11 @@
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
       }
-    ]
+    ],
+    "import/no-extraneous-dependencies": ["error",  {"devDependencies": true}],
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": 0,
+    "react/no-unused-prop-types": 0
   },
   "settings": {
     "import/resolver": {

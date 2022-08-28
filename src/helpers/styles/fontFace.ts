@@ -1,4 +1,4 @@
-import {FontWeight} from '../../constants/styles/fontWeight';
+import { FontWeight } from '../../constants/styles/fontWeight';
 
 export const fontFace = (fontName: string, font: Record<string, string>, fontWeight: FontWeight) => `
   @font-face {

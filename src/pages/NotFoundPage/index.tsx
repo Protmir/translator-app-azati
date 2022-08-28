@@ -1,17 +1,14 @@
 import React from 'react';
-import {routes} from '../../constants/routePath';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { routes } from '../../constants/routePath';
 
-
-export const NotFoundPage = () => {
-  return (
+export const NotFoundPage = () => (
     <>
-      <h2>Sorry, this page not found</h2>
-      <Link to={routes.root} >
-        <button>
-          Go to main page
-        </button>
-      </Link>
+        <h2>Sorry, this page not found</h2>
+        <Link to={routes.root}>
+            <button type="button">
+                Go to main page
+            </button>
+        </Link>
     </>
-  );
-};
+);
