@@ -2,7 +2,7 @@ import { LoaderTranslateAction, TranslateState } from '../../types/translate/tra
 import { TranslateActionTypes } from '../../types/translate/translateTypes';
 
 const initialState: TranslateState = {
-    translations: null,
+    translations: [],
     loading: false,
     error: false,
 };

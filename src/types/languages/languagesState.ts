@@ -2,7 +2,7 @@ import { LanguagesActionTypes } from './languagesTypes';
 import { Languages } from './languages';
 
 export interface LanguagesState {
-    languages: Languages[] | null;
+    languages: Languages[] | [];
     loading: boolean,
     error: boolean
 }

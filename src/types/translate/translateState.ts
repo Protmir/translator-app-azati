@@ -2,7 +2,7 @@ import { TranslateResponse } from './translateResponse';
 import { TranslateActionTypes } from './translateTypes';
 
 export interface TranslateState {
-    translations: TranslateResponse[] | null;
+    translations: TranslateResponse[] | [];
     loading: boolean,
     error: boolean
 }

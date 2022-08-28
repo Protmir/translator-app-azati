@@ -2,7 +2,7 @@ import { LanguagesState, LoaderLanguagesAction } from '../../types/languages/lan
 import { LanguagesActionTypes } from '../../types/languages/languagesTypes';
 
 const initialState: LanguagesState = {
-    languages: null,
+    languages: [],
     loading: false,
     error: false,
 };

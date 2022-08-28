@@ -1,8 +1,13 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import { TextArea } from '../../components/TextArea';
 import { units } from '../../helpers/styles/units';
-import { DropDown } from '../../components/DropDown';
-import { OptionProps } from '../../components/DropDown/Options';
+import { useAction } from '../../hooks/useAction';
+import { useTypeSelector } from '../../hooks/useTypeSelector';
+import { Loader } from '../../components/Loader';
+import { Select } from '../../components/Select';
+import { TypesSelect } from '../../constants/TypesSelect';
+import { SelectOption } from '../../types/SelectOption';
 
 const StyledTextAreaWrapper = styled.div`
   height: 100%;
@@ -12,50 +17,71 @@ const StyledTextAreaWrapper = styled.div`
 `;
 
 const StyledTextWrapper = styled.div`
+  width: ${units(150)};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
 
-const StyledTextArea = styled(TextArea)`
-  max-width: ${units(150)};
-  
   :first-child {
     margin-right: ${units(3)};
   }
 `;
 
 export const Translator = () => {
-    const userOptions: OptionProps[] = [
-        {
-            key: 'profile',
-            // nameOption: t('profile:sentences.myProfile'),
-            // onClick: () => history.push(routes.profile),
-        },
-        {
-            key: 'settings',
-            // nameOption: t('profile:sentences.mySettings'),
-            // onClick: () => history.push(routes.settings),
-        },
-        {
-            key: 'logout',
-            // nameOption: t('profile:sentences.logout'),
-            // onClick: () => dispatch(logout()),
-        },
-    ];
+    const { fetchLanguages } = useAction();
+    const { languages, loading } = useTypeSelector(state => state.languages);
+    const { loading: loadingTranslate } = useTypeSelector(state => state.translate);
+    const [selectedLanguage, setSelectedLanguage] = useState({ source: 'ru', target: 'en' });
+
+    useEffect(() => {
+        fetchLanguages();
+    }, []);
+
+    const languageOptions: SelectOption[] = languages.map(({ language, name }): SelectOption => ({
+        id: language,
+        key: language,
+        name,
+    }));
+
+    if (loading && !languages?.length) {
+        return <Loader />;
+    }
+
+    const handleSelectLanguage = (field: string, value = '') => {
+        setSelectedLanguage((prevState => ({
+            ...prevState,
+            [field]: value,
+        })));
+    };
 
     return (
         <>
             <h1>Translator</h1>
             <StyledTextAreaWrapper>
                 <StyledTextWrapper>
-                    <StyledTextArea name="TranslationText" maxLength={1000} />
-                    <DropDown options={userOptions} />
+                    <TextArea name="TranslationText" maxLength={1000} />
+                    <Select
+                        name="source"
+                        selectType={TypesSelect.DEFAULT}
+                        options={languageOptions}
+                        onClick={handleSelectLanguage}
+                        value={selectedLanguage.source}
+                    />
                 </StyledTextWrapper>
                 <StyledTextWrapper>
-                    <StyledTextArea name="TranslatedText" readOnly maxLength={1000} />
-                    <DropDown options={userOptions} />
+                    {loadingTranslate || (
+                        <>
+                            <TextArea name="TranslatedText" readOnly maxLength={1000} />
+                            <Select
+                                name="target"
+                                selectType={TypesSelect.DEFAULT}
+                                options={languageOptions}
+                                onClick={handleSelectLanguage}
+                                value={selectedLanguage.target}
+                            />
+                        </>
+                    )}
                 </StyledTextWrapper>
             </StyledTextAreaWrapper>
         </>

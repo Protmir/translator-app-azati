@@ -100,6 +100,6 @@ export const TextArea = ({
             wrap="hard"
             autoFocus
         />
-        {!error && !readOnly && <StyledCountValue>{`${value?.length}/${maxLength}`}</StyledCountValue>}
+        {!error && !readOnly && <StyledCountValue>{`${value?.length || 0}/${maxLength}`}</StyledCountValue>}
     </StyledRoot>
 );
