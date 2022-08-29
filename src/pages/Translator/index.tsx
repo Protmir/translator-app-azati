@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { TextArea } from '../../components/TextArea';
 import { units } from '../../helpers/styles/units';
 import { useAction } from '../../hooks/useAction';
@@ -29,14 +29,27 @@ const StyledTextWrapper = styled.div`
 `;
 
 export const Translator = () => {
-    const { fetchLanguages } = useAction();
+    const { fetchLanguages, translateText } = useAction();
     const { languages, loading } = useTypeSelector(state => state.languages);
-    const { loading: loadingTranslate } = useTypeSelector(state => state.translate);
+    const { loading: isLoadingTranslate, translatedText } = useTypeSelector(state => state.translate);
     const [selectedLanguage, setSelectedLanguage] = useState({ source: 'ru', target: 'en' });
+    const [textAreaValue, setTextAreaValue] = useState('');
 
     useEffect(() => {
         fetchLanguages();
     }, []);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            translateText({
+                q: textAreaValue || '',
+                target: selectedLanguage.target,
+                source: selectedLanguage.source,
+            });
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [textAreaValue, selectedLanguage]);
 
     const languageOptions: SelectOption[] = languages.map(({ language, name }): SelectOption => ({
         id: language,
@@ -55,12 +68,43 @@ export const Translator = () => {
         })));
     };
 
+    const handleTextAreaValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        setTextAreaValue(event.target.value);
+    };
+
+    const isLoadingTranslatedText = () => (
+        isLoadingTranslate
+            ? <Loader />
+            : (
+                <>
+                    <TextArea
+                        name="TranslatedText"
+                        readOnly
+                        maxLength={1000}
+                        value={translatedText}
+                    />
+                    <Select
+                        name="target"
+                        selectType={TypesSelect.DEFAULT}
+                        options={languageOptions}
+                        onClick={handleSelectLanguage}
+                        value={selectedLanguage.target}
+                    />
+                </>
+            )
+    );
+
     return (
         <>
             <h1>Translator</h1>
             <StyledTextAreaWrapper>
                 <StyledTextWrapper>
-                    <TextArea name="TranslationText" maxLength={1000} />
+                    <TextArea
+                        name="TranslationText"
+                        maxLength={1000}
+                        onChange={handleTextAreaValue}
+                        value={textAreaValue}
+                    />
                     <Select
                         name="source"
                         selectType={TypesSelect.DEFAULT}
@@ -70,18 +114,7 @@ export const Translator = () => {
                     />
                 </StyledTextWrapper>
                 <StyledTextWrapper>
-                    {loadingTranslate || (
-                        <>
-                            <TextArea name="TranslatedText" readOnly maxLength={1000} />
-                            <Select
-                                name="target"
-                                selectType={TypesSelect.DEFAULT}
-                                options={languageOptions}
-                                onClick={handleSelectLanguage}
-                                value={selectedLanguage.target}
-                            />
-                        </>
-                    )}
+                    {isLoadingTranslatedText()}
                 </StyledTextWrapper>
             </StyledTextAreaWrapper>
         </>

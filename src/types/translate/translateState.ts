@@ -1,8 +1,7 @@
-import { TranslateResponse } from './translateResponse';
 import { TranslateActionTypes } from './translateTypes';
 
 export interface TranslateState {
-    translations: TranslateResponse[] | [];
+    translatedText: string;
     loading: boolean,
     error: boolean
 }
@@ -13,7 +12,7 @@ interface FetchTranslateAction {
 
 export interface FetchTranslateSuccessAction {
     type: TranslateActionTypes.FETCH_TRANSLATE_SUCCESS;
-    payload: TranslateResponse[]
+    payload: string
 }
 
 interface FetchTranslateErrorAction {

@@ -2,7 +2,7 @@ import { LoaderTranslateAction, TranslateState } from '../../types/translate/tra
 import { TranslateActionTypes } from '../../types/translate/translateTypes';
 
 const initialState: TranslateState = {
-    translations: [],
+    translatedText: '',
     loading: false,
     error: false,
 };
@@ -17,7 +17,7 @@ const translate = {
         ...state,
         loading: false,
         error: false,
-        translations: action.payload,
+        translatedText: action.payload,
     }),
     [TranslateActionTypes.FETCH_TRANSLATE_ERROR]: (state = initialState): TranslateState => ({
         ...state,
