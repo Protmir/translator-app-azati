@@ -33,7 +33,7 @@ export const SwitchLanguageButton = ({
             target: selectedLanguages.source,
         });
         onChangeTextArea(newValueForTextArea);
-    }, [selectedLanguages, onChangeLanguages]);
+    }, [selectedLanguages, onChangeLanguages, onChangeTextArea, newValueForTextArea]);
 
     return (
         <StyledButton color={TypesButton.PRIMARY} onClick={handleAddToFavourite}>
