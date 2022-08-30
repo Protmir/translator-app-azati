@@ -8,6 +8,15 @@ import { Loader } from '../../components/Loader';
 import { Select } from '../../components/Select';
 import { TypesSelect } from '../../constants/TypesSelect';
 import { SelectOption } from '../../types/SelectOption';
+import { Button } from '../../components/Button';
+import { TypesButton } from '../../types/constantsButtonTypes';
+
+const StyledRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const StyledTextAreaWrapper = styled.div`
   height: 100%;
@@ -26,6 +35,11 @@ const StyledTextWrapper = styled.div`
   :first-child {
     margin-right: ${units(3)};
   }
+`;
+
+const StyledButton = styled(Button)`
+  width: max-content;
+  margin-top: ${units(5)};
 `;
 
 export const Translator = () => {
@@ -97,7 +111,7 @@ export const Translator = () => {
     );
 
     return (
-        <>
+        <StyledRoot>
             <h1>Translator</h1>
             <StyledTextAreaWrapper>
                 <StyledTextWrapper>
@@ -119,6 +133,9 @@ export const Translator = () => {
                     {isLoadingTranslatedText()}
                 </StyledTextWrapper>
             </StyledTextAreaWrapper>
-        </>
+            <StyledButton color={TypesButton.PRIMARY}>
+                Add to favourite
+            </StyledButton>
+        </StyledRoot>
     );
 };
