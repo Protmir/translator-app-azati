@@ -36,7 +36,7 @@ export const Header = () => (
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <StyledNavLink to={routes.root}>Home</StyledNavLink>
-                    <StyledNavLink to={routes.favourite}>Favourite</StyledNavLink>
+                    <StyledNavLink to={routes.favourites}>Favourite</StyledNavLink>
                 </Nav>
             </Navbar.Collapse>
         </StyledContainer>

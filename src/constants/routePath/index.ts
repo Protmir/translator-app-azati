@@ -1,4 +1,4 @@
 export const routes = {
     root: '/',
-    favourite: '/favourite',
+    favourites: '/favourites',
 } as const;
