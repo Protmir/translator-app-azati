@@ -2,7 +2,6 @@
   "name": "test-azati",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://protmir.github.io/translator-app-azati",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@types/jest": "^27.0.1",
@@ -27,8 +26,6 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -62,7 +59,6 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
     "eslint": "^8.23.0",
-    "eslint-plugin-react": "^7.31.1",
-    "gh-pages": "^4.0.0"
+    "eslint-plugin-react": "^7.31.1"
   }
 }
