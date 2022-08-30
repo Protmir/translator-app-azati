@@ -15,17 +15,33 @@ const StyledTextAreaWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  @media (max-width: 820px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledTextWrapper = styled.div`
-  width: ${units(150)};
+  width: ${units(100)};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  :first-child {
-    margin-right: ${units(3)};
+  @media (min-width: 821px) {
+    :first-child {
+      margin-right: ${units(3)};
+    }
+  }
+
+  @media (max-width: 820px) {
+    :first-child {
+      margin-bottom: ${units(3)};
+    }
+  }
+  
+  @media (max-width: 426px) {
+    width: 95vw;
   }
 `;
 

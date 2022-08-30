@@ -10,6 +10,10 @@ import { typography } from '../../helpers/styles/typography';
 const StyledContainer = styled.div`
   display: flex;
   margin-left: ${units(8)};
+  
+  @media (max-width: 426px) {
+    margin-left: ${units(1)};
+  }
 `;
 
 const StyledNavLinkBrand = styled(NavLink)`
