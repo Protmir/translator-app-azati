@@ -1,12 +1,12 @@
 import { FavouriteActionTypes } from './favouriteTypes';
 
-export interface Favourite {
+export interface Texts {
     source: string
     target: string
 }
 
 export interface FavouriteState {
-    favourite: Favourite[];
+    favourite: Texts[];
     loading: boolean,
     error: boolean
 }
@@ -17,7 +17,7 @@ interface FetchFavouriteAction {
 
 export interface FetchFavouriteSuccessAction {
     type: FavouriteActionTypes.FETCH_FAVOURITE_SUCCESS;
-    payload: Favourite[]
+    payload: Texts[]
 }
 
 interface FetchFavouriteErrorAction {
@@ -26,7 +26,11 @@ interface FetchFavouriteErrorAction {
 
 interface UpdateFavourite {
     type: FavouriteActionTypes.UPDATE_FAVOURITE;
-    payload: Favourite;
+    payload: Texts;
 }
 
-export type FavoriteAction = FetchFavouriteAction | FetchFavouriteSuccessAction | FetchFavouriteErrorAction | UpdateFavourite
+interface RemoveFavourite {
+    type: FavouriteActionTypes.REMOVE_FAVOURITE;
+}
+
+export type FavoriteAction = FetchFavouriteAction | FetchFavouriteSuccessAction | FetchFavouriteErrorAction | UpdateFavourite | RemoveFavourite

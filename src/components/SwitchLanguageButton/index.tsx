@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { TypesButton } from '../../types/constantsButtonTypes';
 import { Button } from '../Button';
 import { units } from '../../helpers/styles/units';
-import { Favourite } from '../../types/favourite/favouriteState';
+import { Texts } from '../../types/favourite/favouriteState';
 
 interface SwitchLanguageButtonProps {
-    selectedLanguages: Favourite,
-    onChangeLanguages: Dispatch<React.SetStateAction<Favourite>>
+    selectedLanguages: Texts,
+    onChangeLanguages: Dispatch<React.SetStateAction<Texts>>
     onChangeTextArea: Dispatch<React.SetStateAction<string>>,
     newValueForTextArea: string
 }

@@ -41,6 +41,7 @@ export const Header = () => (
                 <Nav className="me-auto">
                     <StyledNavLink to={routes.root}>Translator</StyledNavLink>
                     <StyledNavLink to={routes.favourites}>Favourite</StyledNavLink>
+                    <StyledNavLink to={routes.history}>History</StyledNavLink>
                 </Nav>
             </Navbar.Collapse>
         </StyledContainer>

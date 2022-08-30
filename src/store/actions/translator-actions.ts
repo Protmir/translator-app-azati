@@ -4,9 +4,10 @@ import { getLanguage } from '../../api/getLanguage';
 import { TranslateRequest } from '../../types/translate/translateRequest';
 import { translate } from '../../api/translate';
 import { TranslateActionTypes } from '../../types/translate/translateTypes';
-import { Favourite } from '../../types/favourite/favouriteState';
+import { Texts } from '../../types/favourite/favouriteState';
 import { FavouriteActionTypes } from '../../types/favourite/favouriteTypes';
 import { localStorageItemsName } from '../../constants/localStorageItemsName';
+import { HistoryActionTypes } from '../../types/history/historyTypes';
 
 export const fetchLanguages = () => async (dispatch: Dispatch) => {
     dispatch({ type: LanguagesActionTypes.FETCH_LANGUAGES });
@@ -25,6 +26,13 @@ export const translateText = (data: TranslateRequest) => async (dispatch: Dispat
     try {
         const response = await translate(data);
         setTimeout(() => {
+            dispatch({
+                type: HistoryActionTypes.UPDATE_HISTORY,
+                payload: {
+                    source: data.q,
+                    target: response.data.data.translations.translatedText,
+                },
+            });
             dispatch({ type: TranslateActionTypes.FETCH_TRANSLATE_SUCCESS, payload: response.data.data.translations.translatedText });
         }, 1000);
     } catch {
@@ -35,7 +43,7 @@ export const translateText = (data: TranslateRequest) => async (dispatch: Dispat
 export const getFavourite = () => async (dispatch: Dispatch) => {
     dispatch({ type: FavouriteActionTypes.FETCH_FAVOURITE });
     try {
-        const favourite: Favourite[] = await localStorage.getItem(localStorageItemsName.favourites)
+        const favourite: Texts[] = await localStorage.getItem(localStorageItemsName.favourites)
             ? JSON.parse(localStorage.getItem(localStorageItemsName.favourites) || '')
             : [];
         setTimeout(() => {
@@ -51,6 +59,11 @@ export const removeFavourite = () => async (dispatch: Dispatch) => {
     dispatch({ type: FavouriteActionTypes.REMOVE_FAVOURITE });
 };
 
-export const updateFavourite = (favourite: Favourite) => (dispatch: Dispatch) => {
+export const updateFavourite = (favourite: Texts) => (dispatch: Dispatch) => {
     dispatch({ type: FavouriteActionTypes.UPDATE_FAVOURITE, payload: favourite });
+};
+
+export const removeHistory = () => async (dispatch: Dispatch) => {
+    await localStorage.removeItem(localStorageItemsName.history);
+    dispatch({ type: HistoryActionTypes.REMOVE_HISTORY });
 };

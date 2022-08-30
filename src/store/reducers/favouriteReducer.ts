@@ -1,4 +1,4 @@
-import { FavoriteAction, Favourite, FavouriteState } from '../../types/favourite/favouriteState';
+import { FavoriteAction, Texts, FavouriteState } from '../../types/favourite/favouriteState';
 import { FavouriteActionTypes } from '../../types/favourite/favouriteTypes';
 import { localStorageItemsName } from '../../constants/localStorageItemsName';
 
@@ -12,7 +12,7 @@ const initialState: FavouriteState = {
     error: false,
 };
 
-const updateFavourite = (nextFavourite: Favourite, prevFavourite: Favourite[]) => {
+const updateFavourite = (nextFavourite: Texts, prevFavourite: Texts[]) => {
     const newFavourite = [nextFavourite, ...prevFavourite];
     localStorage.setItem(localStorageItemsName.favourites, JSON.stringify(newFavourite));
     return newFavourite;

@@ -1,3 +1,4 @@
-export const localStorageItemsName = {
-    favourites: 'favourites',
-};
+export enum localStorageItemsName {
+    favourites='favourites',
+    history='history'
+}
