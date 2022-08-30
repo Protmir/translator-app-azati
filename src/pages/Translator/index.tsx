@@ -41,14 +41,16 @@ export const Translator = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            translateText({
-                q: textAreaValue || '',
-                target: selectedLanguage.target,
-                source: selectedLanguage.source,
-            });
+            if (textAreaValue) {
+                translateText({
+                    q: textAreaValue || '',
+                    target: selectedLanguage.target,
+                    source: selectedLanguage.source,
+                });
+            }
         }, 1000);
 
-        return () => clearInterval(timer);
+        return () => clearTimeout(timer);
     }, [textAreaValue, selectedLanguage]);
 
     const languageOptions: SelectOption[] = languages.map(({ language, name }): SelectOption => ({
