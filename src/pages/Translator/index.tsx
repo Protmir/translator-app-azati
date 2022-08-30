@@ -9,6 +9,7 @@ import { Select } from '../../components/Select';
 import { TypesSelect } from '../../constants/TypesSelect';
 import { SelectOption } from '../../types/SelectOption';
 import { FavouriteButton } from '../../components/FavouriteButton';
+import { SwitchLanguageButton } from '../../components/SwitchLanguageButton';
 
 const StyledTextAreaWrapper = styled.div`
   height: 100%;
@@ -16,7 +17,7 @@ const StyledTextAreaWrapper = styled.div`
   justify-content: center;
   align-items: center;
   
-  @media (max-width: 820px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
   }
 `;
@@ -27,18 +28,6 @@ const StyledTextWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @media (min-width: 821px) {
-    :first-child {
-      margin-right: ${units(3)};
-    }
-  }
-
-  @media (max-width: 820px) {
-    :first-child {
-      margin-bottom: ${units(3)};
-    }
-  }
   
   @media (max-width: 426px) {
     width: 95vw;
@@ -132,6 +121,12 @@ export const Translator = () => {
                         value={selectedLanguage.source}
                     />
                 </StyledTextWrapper>
+                <SwitchLanguageButton
+                    onChangeLanguages={setSelectedLanguage}
+                    selectedLanguages={selectedLanguage}
+                    onChangeTextArea={setTextAreaValue}
+                    newValueForTextArea={translatedText}
+                />
                 <StyledTextWrapper>
                     {isLoadingTranslatedText()}
                 </StyledTextWrapper>

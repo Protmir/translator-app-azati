@@ -39,7 +39,7 @@ export const Header = () => (
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <StyledNavLink to={routes.root}>Home</StyledNavLink>
+                    <StyledNavLink to={routes.root}>Translator</StyledNavLink>
                     <StyledNavLink to={routes.favourites}>Favourite</StyledNavLink>
                 </Nav>
             </Navbar.Collapse>
