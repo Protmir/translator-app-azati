@@ -2,6 +2,7 @@
   "name": "test-azati",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@types/jest": "^27.0.1",
@@ -60,5 +61,8 @@
     "@types/styled-components": "^5.1.26",
     "eslint": "^8.23.0",
     "eslint-plugin-react": "^7.31.1"
+  },
+  "rules": {
+    "linebreak-style": 0
   }
 }
